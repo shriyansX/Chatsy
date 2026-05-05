@@ -165,11 +165,11 @@ const ChatForum = ({ clerkUser, slug }) => {
   const [error, setError] = useState(null);
   const { toast } = useToast();
 
-  const user = {
+  const user = React.useMemo(() => ({
     id: userId,
     name: userName,
     image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${userName}&backgroundColor=00a884`,
-  };
+  }), [userId, userName]);
   
   const [channel, setChannel] = useState();
   const client = useCreateChatClient({
@@ -179,44 +179,53 @@ const ChatForum = ({ clerkUser, slug }) => {
   });
 
   useEffect(() => {
+    let isMounted = true;
+    
     const setupChannel = async () => {
       if (!client) return;
       
       try {
         setIsLoading(true);
         
-        const channel = client.channel('messaging', slug, {
+        const newChannel = client.channel('messaging', slug, {
           image: `https://api.dicebear.com/7.x/shapes/svg?seed=${slug}&backgroundColor=00a884`,
           name: capitalize(slug) + " Discussion",
           members: [userId],
           created_by_id: userId,
         });
 
-        await channel.create();
-        await channel.watch();
+        // watch() automatically creates the channel if it doesn't exist
+        await newChannel.watch();
         
-        setChannel(channel);
-        setIsLoading(false);
-        
-        toast.success(`Welcome to ${capitalize(slug)} Discussion!`, {
-          title: 'Connected',
-          duration: 3000
-        });
-        
+        if (isMounted) {
+          setChannel(newChannel);
+          setIsLoading(false);
+          
+          toast.success(`Welcome to ${capitalize(slug)} Discussion!`, {
+            title: 'Connected',
+            duration: 3000
+          });
+        }
       } catch (err) {
         console.error('Error setting up channel:', err);
-        setError(err.message);
-        setIsLoading(false);
-        
-        toast.error('Failed to connect to chat room. Please try again.', {
-          title: 'Connection Error',
-          duration: 5000
-        });
+        if (isMounted) {
+          setError(err.message);
+          setIsLoading(false);
+          
+          toast.error('Failed to connect to chat room. Please try again.', {
+            title: 'Connection Error',
+            duration: 5000
+          });
+        }
       }
     };
 
     setupChannel();
-  }, [client, slug, userId, toast]);
+    
+    return () => {
+      isMounted = false;
+    };
+  }, [client, slug, userId]);
 
   if (!client || isLoading) {
     return <CustomLoadingIndicator />;

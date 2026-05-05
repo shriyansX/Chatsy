@@ -50,13 +50,14 @@ export const metadata = {
     title: "Chatsy - Modern Chat Platform",
     description: "Experience seamless communication with our modern chat platform. Join communities and connect with everyone.",
     creator: "@chatsy"
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false
-  },
+  }
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#00a884" },
     { media: "(prefers-color-scheme: dark)", color: "#0b141a" }
