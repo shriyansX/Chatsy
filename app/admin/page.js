@@ -224,7 +224,7 @@ const AdminDashboard = () => {
           </p>
           <p className="text-xs text-muted-foreground">{activity.timestamp}</p>
         </div>
-        <Button variant="ghost" size="sm">
+        <Button variant="ghost" size="sm" onClick={() => toast.info('View details feature will be available soon!')}>
           <Eye className="w-4 h-4" />
         </Button>
       </div>
@@ -274,11 +274,11 @@ const AdminDashboard = () => {
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-foreground">User Activity</h3>
             <div className="flex space-x-2">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => toast.info('Filtering feature will be available soon!')}>
                 <Filter className="w-4 h-4 mr-2" />
                 Filter
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => toast.info('Export feature will be available soon!')}>
                 <Download className="w-4 h-4 mr-2" />
                 Export
               </Button>
@@ -299,7 +299,7 @@ const AdminDashboard = () => {
         <div className="bg-card border border-border rounded-2xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-foreground">Recent Activity</h3>
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={() => setActiveTab('moderation')}>
               View All
             </Button>
           </div>
@@ -410,10 +410,10 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
+              <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => window.open(sponsor.website, '_blank')}>
                 <ExternalLink className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
+              <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => toast.info('Edit sponsor feature will be available soon!')}>
                 <Edit className="w-4 h-4" />
               </Button>
             </div>
@@ -500,11 +500,11 @@ const AdminDashboard = () => {
             </p>
           </div>
           <div className="flex space-x-3">
-            <Button variant="outline" className="hover:bg-purple-50 hover:border-purple-300">
+            <Button variant="outline" className="hover:bg-purple-50 hover:border-purple-300" onClick={() => toast.info('Sponsor filtering will be available soon!')}>
               <Filter className="w-4 h-4 mr-2" />
               Filter
             </Button>
-            <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+            <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700" onClick={() => toast.info('Add sponsor feature will be available soon!')}>
               <Plus className="w-4 h-4 mr-2" />
               Add Sponsor
             </Button>
@@ -603,7 +603,7 @@ const AdminDashboard = () => {
               <Button 
                 variant="outline" 
                 className="h-16 flex flex-col items-center justify-center space-y-2 hover:bg-purple-50 hover:border-purple-300 transition-all group"
-                onClick={() => toast.info('Export feature coming soon!')}
+                onClick={() => toast.info('Export report feature will be available soon!')}
               >
                 <Download className="w-6 h-6 group-hover:text-purple-600" />
                 <span className="text-sm">Export Report</span>
@@ -612,7 +612,7 @@ const AdminDashboard = () => {
               <Button 
                 variant="outline" 
                 className="h-16 flex flex-col items-center justify-center space-y-2 hover:bg-green-50 hover:border-green-300 transition-all group"
-                onClick={() => toast.success('Email templates ready!')}
+                onClick={() => toast.success('Sponsor contact feature will be available soon!')}
               >
                 <Heart className="w-6 h-6 group-hover:text-green-600" />
                 <span className="text-sm">Contact Sponsors</span>

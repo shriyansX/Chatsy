@@ -97,13 +97,37 @@ export async function POST(request) {
         name: "Design & UI/UX",
         description: "Creative minds sharing design ideas",
         image: "https://api.dicebear.com/7.x/shapes/svg?seed=design&backgroundColor=ec4899"
+      },
+      {
+        slug: "startup",
+        name: "Startup Stories",
+        description: "Entrepreneurs sharing their journey",
+        image: "https://api.dicebear.com/7.x/shapes/svg?seed=startup&backgroundColor=f59e0b"
+      },
+      {
+        slug: "Html",
+        name: "HTML Discussion",
+        description: "A deep dive into Hypertext Markup Language basics",
+        image: "https://api.dicebear.com/7.x/shapes/svg?seed=html&backgroundColor=f97316"
+      },
+      {
+        slug: "Css",
+        name: "CSS Discussion",
+        description: "Styling web pages with Cascading Style Sheets",
+        image: "https://api.dicebear.com/7.x/shapes/svg?seed=css&backgroundColor=3b82f6"
+      },
+      {
+        slug: "Nodejs",
+        name: "Node.js Discussion",
+        description: "Server-side programming with Node.js runtime",
+        image: "https://api.dicebear.com/7.x/shapes/svg?seed=nodejs&backgroundColor=22c55e"
       }
     ];
     
     // Create/join channels in parallel for better performance
     const channelPromises = channels.map(async (channelData) => {
       try {
-        const channel = serverClient.channel('messaging', channelData.slug, {
+        const channel = serverClient.channel('livestream', channelData.slug, {
           name: channelData.name,
           description: channelData.description,
           image: channelData.image,

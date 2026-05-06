@@ -187,11 +187,9 @@ const ChatForum = ({ clerkUser, slug }) => {
       try {
         setIsLoading(true);
         
-        const newChannel = client.channel('messaging', slug, {
+        const newChannel = client.channel('livestream', slug, {
           image: `https://api.dicebear.com/7.x/shapes/svg?seed=${slug}&backgroundColor=00a884`,
           name: capitalize(slug) + " Discussion",
-          members: [userId],
-          created_by_id: userId,
         });
 
         // watch() automatically creates the channel if it doesn't exist
